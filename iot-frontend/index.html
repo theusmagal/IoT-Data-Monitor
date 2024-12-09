@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Sensor Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+            color: #4CAF50;
+            font-size: 2rem;
+            background-color: #fff;
+            margin: 0 0 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .sensor-section {
+            margin-bottom: 40px;
+        }
+
+        .sensor-title {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #4CAF50;
+            font-size: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            color: #777;
+        }
+    </style>
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch("/api/sensor-data");
+                const data = await response.json();
+
+                // Clear old table data
+                document.getElementById("sensor1-body").innerHTML = "";
+                document.getElementById("sensor2-body").innerHTML = "";
+
+                // Populate Sensor 1 data
+                const sensor1Humidity = data.filter(entry => entry.sensor_id === "1" && entry._field === "humidity").slice(-6);
+                const sensor1Temperature = data.filter(entry => entry.sensor_id === "1" && entry._field === "temperature").slice(-6);
+                for (let i = 0; i < 6; i++) {
+                    const row = `<tr>
+                        <td>${sensor1Humidity[i]?._value || "N/A"}</td>
+                        <td>${sensor1Temperature[i]?._value || "N/A"}</td>
+                        <td>${sensor1Humidity[i]?._time ? new Date(sensor1Humidity[i]._time).toLocaleString() : "N/A"}</td>
+                    </tr>`;
+                    document.getElementById("sensor1-body").innerHTML += row;
+                }
+
+                // Populate Sensor 2 data
+                const sensor2Humidity = data.filter(entry => entry.sensor_id === "2" && entry._field === "humidity").slice(-6);
+                const sensor2Temperature = data.filter(entry => entry.sensor_id === "2" && entry._field === "temperature").slice(-6);
+                for (let i = 0; i < 6; i++) {
+                    const row = `<tr>
+                        <td>${sensor2Humidity[i]?._value || "N/A"}</td>
+                        <td>${sensor2Temperature[i]?._value || "N/A"}</td>
+                        <td>${sensor2Humidity[i]?._time ? new Date(sensor2Humidity[i]._time).toLocaleString() : "N/A"}</td>
+                    </tr>`;
+                    document.getElementById("sensor2-body").innerHTML += row;
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        // Fetch data every 10 seconds
+        setInterval(fetchData, 10000);
+        window.onload = fetchData;
+    </script>
+</head>
+<body>
+    <h1>IoT Sensor Dashboard</h1>
+    <div class="container">
+        <!-- Sensor 1 -->
+        <div class="sensor-section">
+            <div class="sensor-title">Sensor 1 Data</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Humidity</th>
+                        <th>Temperature</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="sensor1-body">
+                    <!-- Data will be come here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Sensor 2 -->
+        <div class="sensor-section">
+            <div class="sensor-title">Sensor 2 Data</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Humidity</th>
+                        <th>Temperature</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody id="sensor2-body">
+                    <!-- Data will come here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="footer">
+        If you like my page, contact me: theusmagal@hotmail.com
+    </div>
+</body>
+</html>
