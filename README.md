@@ -14,6 +14,8 @@ The data is processed by a Node.js backend and visualized using Nginx.
 
 - index.html: HTML page for visualizing sensor data.
 
+- index.js: Sending data and collecting data from InfluxDB. 
+
 - iot-device.py: MicroPython code for collecting data from DHT22 sensors (2sensors).
 
 - prototype.png: Screenshot of the Wokwi prototype.
