@@ -38,7 +38,7 @@ The data is processed by a Node.js backend and visualized using Nginx.
    - **Wi-Fi Connection**:
      Ensures the IoT device connects to the internet before sending data.
    - **HTTP POST Requests**:
-     Sends JSON data to the backend at `http://20.82.137.24/api/data`.
+     Sends JSON data to the backend at `http://your_IP_address/api/data`.
 
 3. **Code File**:
    - **`iot-device.py`**: Contains the logic for Wi-Fi setup, sensor readings, and HTTP POST requests.
