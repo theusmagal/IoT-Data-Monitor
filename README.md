@@ -1,11 +1,13 @@
+
 # IoT Project Workflow: MicroPython, Nginx, Node.js, and InfluxDB
 
 ### **GitHub and Youtube**:
    - https://www.youtube.com/watch?v=UNJCaLH9HKo
    - https://github.com/theusmagal/IoT-Data-Monitor
-   - wokwi link: https://wokwi.com/projects/415646006068066305
+   - wokwi link: https://wokwi.com/projects/415646006068066305 
 
-## **1. MicroPython and IoT Device**
+# IoT Project: Temperature and Humidity - Sensor Data 
+
 This project collects data from DHT22 sensors and displays it on a webpage. 
 The data is processed by a Node.js backend and visualized using Nginx.
 
@@ -17,11 +19,15 @@ The data is processed by a Node.js backend and visualized using Nginx.
 
 - index.html: HTML page for visualizing sensor data.
 
+- index.js: Sending data and collecting data from InfluxDB. 
+
 - iot-device.py: MicroPython code for collecting data from DHT22 sensors (2sensors).
 
 - prototype.png: Screenshot of the Wokwi prototype.
 
 - README.txt: Documentation about the project.
+
+## **1. MicroPython and IoT Device**
 
 ### **Steps**:
 1. **Prototype Creation**:
@@ -187,3 +193,10 @@ The frontend dashboard visualizes the sensor data in real time.
 ## **10. Resume**
 This project integrates MicroPython, Nginx, Node.js, InfluxDB, and HTML to create a complete IoT solution. 
 It shows real-time data collection, processing, storage, and visualization.
+=======
+## How to Run
+1. Deploy the backend (`iot-backend/index.js`) on your VPS.
+2. Set up your Nginx using "nginx-iot-vps.conf".
+3. Use "index.html" to display the data.
+
+## Done by Matheus Bueno Magalhães
