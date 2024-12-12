@@ -7,8 +7,9 @@ const app = express();
 app.use(bodyParser.json());
 
 // InfluxDB configuration
+require('dotenv').config();
 const INFLUX_URL = 'http://localhost:8086'; // send correct ip always
-const INFLUX_TOKEN = 'wGs2e8x3zxoBhl21yMGMjD_KDux5EkLpQgPuSB-qr680wS5q98-_eX4XdPa0aUefGjKLTp1x0bcdrTqsuxmMlw==';
+const INFLUX_TOKEN = process.env.INFLUX_TOKEN;
 const INFLUX_ORG = 'LAB';
 const INFLUX_BUCKET = 'Temperature Collecting';
 

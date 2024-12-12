@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Matheus Magalhaes",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-pi-pico-w", "id": "pico1", "top": 158.15, "left": -111.83, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -4.75, "left": 65.17, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht2", "top": 264.05, "left": 84.37, "attrs": {} },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 421.3,
+      "left": 80.17,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -29.9,
+      "left": 60.97,
+      "attrs": { "value": "10000" }
+    }
+  ],
+  "connections": [
+    [ "dht1:VCC", "pico1:3V3", "green", [ "v0" ] ],
+    [ "dht1:GND", "pico1:GND.8", "red", [ "h19.2", "v-6.35" ] ],
+    [ "dht2:VCC", "pico1:3V3", "green", [ "h-67.2", "v-144", "h-71.06" ] ],
+    [ "dht2:GND", "pico1:GND.7", "red", [ "v19.2", "h-144", "v-159.95" ] ],
+    [ "dht1:SDA", "pico1:GP4", "yellow", [ "v0" ] ],
+    [ "dht2:SDA", "pico1:GP5", "yellow", [ "v0" ] ],
+    [ "dht1:VCC", "r2:1", "violet", [ "v9.6", "h-48", "v-144" ] ],
+    [ "dht1:SDA", "r2:2", "violet", [ "v19.2", "h76.9", "v-153.6" ] ],
+    [ "dht2:VCC", "r1:1", "violet", [ "v-19.2", "h-76.8", "v67.2" ] ],
+    [ "dht2:SDA", "r1:2", "violet", [ "v9.6", "h144.1", "v38.4" ] ]
+  ],
+  "dependencies": {}
+}
